@@ -26,9 +26,8 @@
                     <th>Ingredients</th>
                 </table>
                 <ul>
-                    <tr class="ingredient-list">EGGS<input type="button" class="add-ingredient" value="+"></button>
+                    <tr class="ingredient-list">EGGS</tr><input type="button" class="add-ingredient" value="+"></button>
                     <button type="button" class="remove-ingredient">-</button>
-                    <br>
                 </ul>
                 <button>mix your drink</button> <button>clear</button>
             </div>
@@ -41,17 +40,16 @@
                 <div class="card-image">
                     <img
                         src="https://www.liquor.com/thmb/zJ7_To3UNS5DNJ0aeyc4dVHUAac=/735x0/__opt__aboutcom__coeus__resources__content_migration__liquor__2018__05__10144903__Manhattan-720x720-recipe-9497922907c14d91898f557cb51f2ea3.jpg">
-                    <span class="card-title">Manhattan</span>
                 </div>
                 <div class="card-content">
-                    <p></p>
+                    <span class="card-title">Manhattan</span>
+                    <li class="ingredients">Bourbon</li>
                 </div>
                 <div class="card-action">
-                    <ul class="pagination">
-                        <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-                        <li class="active"><a href="#!">1</a></li>
-                        <li class="waves-effect"><a href="#!">2</a></li>
-                        <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+                    <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Cocktails!</a>
+                    <ul id='dropdown1' class='dropdown-trigger'>
+                        <li><a href="#!">one</a></li>
+                        <li><a href="#!">two</a></li>
                     </ul>
                 </div>
             </div>
@@ -60,28 +58,32 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
         let cocktailURL = "https://rapidapi.com/theapiguy/api/the-cocktail-db?endpoint=apiendpoint_67a71546-a41f-4dd0-9c04-f54fa8f375ef"
-
-        var searchtheapiguy = function (cocktail) {
-            var queryURL = "";
+        let ingredients = [EVERY SINGLE INGREDIENT]
+        let searchtheapiguy = function (cocktail) {
+            let queryURL = "";
             $.ajax({
                 url: queryURL,
                 method: "GET"
             }).then(function (response) {
-                createRow(response);
+                createRow(response); // hi jeremiah 
             });
         };
 
-
+        document.addEventListener('DOMContentLoaded', function () {
+            let elems = document.querySelectorAll('.dropdown-trigger');
+            let instances = M.Dropdown.init(elems, options);
+        });
 
         $(document).ready(function () {
             $(".add-ingredient").click(function () {
-                let markup = "<tr><td><input type='checkbox' name='record'></td><td>";
+                let markup = "<tr><td><input type='checkox' name='record'></td><td>";
                 $("table tbody").append(markup);
+                // push.text from <tr class="ingredient-list">
             });
 
             $(".remove-ingredient").click(function () {
                 $("table tbody").find('input[name="record"]').each(function () {
-                
+                    $(this).parent().find("tr").last().remove();
                 });
             });
         });

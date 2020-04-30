@@ -22,3 +22,4 @@ $(document).ready(function(){
       let markup = "<tr><td><input type='checkbox' name='record'></td><td>" + name + "</td><td>" + email + "</td></tr>";
       $("table tbody").append(markup);
   });
+});
