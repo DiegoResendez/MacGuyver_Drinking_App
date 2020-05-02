@@ -22,14 +22,19 @@
             <div class="card-panel teal">
                 <span class="black-text">Please select your ingredients for your custom cocktail options.
                 </span>
-                <table>
-                    <th>Ingredients</th>
-                </table>
+
+
+                <form>
+                    <div>
+                        <input type="text" id="todo" />
+                    </div>
+                    <button id="add" type="button">+</button>
+                </form>
                 <ul>
-                    <tr class="ingredient-list">EGGS</tr><input type="button" class="add-ingredient" value="+"></button>
-                    <button type="button" class="remove-ingredient">-</button>
                 </ul>
-                <button>mix your drink</button> <button>clear</button>
+                <button>mix your drink</button> <button id="clear-button">clear</button>
+                <!-- This button should remove entire list -->
+
             </div>
         </div>
     </div>
@@ -58,7 +63,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
         let cocktailURL = "https://rapidapi.com/theapiguy/api/the-cocktail-db?endpoint=apiendpoint_67a71546-a41f-4dd0-9c04-f54fa8f375ef"
-        let ingredients = [EVERY SINGLE INGREDIENT]
+        // let ingredients = [EVERY SINGLE INGREDIENT]
         let searchtheapiguy = function (cocktail) {
             let queryURL = "";
             $.ajax({
@@ -71,22 +76,26 @@
 
         document.addEventListener('DOMContentLoaded', function () {
             let elems = document.querySelectorAll('.dropdown-trigger');
-            let instances = M.Dropdown.init(elems, options);
+            let instances = M.Dropdown.init(elems);
         });
+
 
         $(document).ready(function () {
-            $(".add-ingredient").click(function () {
-                let markup = "<tr><td><input type='checkox' name='record'></td><td>";
-                $("table tbody").append(markup);
-                // push.text from <tr class="ingredient-list">
+            $('#add').click(function () {
+                var item = $('#todo')
+                $('ul').prepend("<li>" + item.val() + "<button>" + "-" +
+                    "</button>" + "</li>");
             });
 
-            $(".remove-ingredient").click(function () {
-                $("table tbody").find('input[name="record"]').each(function () {
-                    $(this).parent().find("tr").last().remove();
-                });
+            $('ul').on('click', 'button', function () {
+                $(this).parent().remove();
+            });
+
+            $('ul').on('click', '#clear-button', function () {
+                $(this).parent().remove();
             });
         });
+
     </script>
 </body>
 
