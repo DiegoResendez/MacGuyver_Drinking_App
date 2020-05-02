@@ -36,7 +36,6 @@ let searchCocktailByName = function(){
       "x-rapidapi-key": "906589c267mshf9a4f4892b356a0p149e31jsn16ecd1a6860c"
     }
   }
-  
   $.ajax(settings).done(function (response) {
     console.log(response);
   });
@@ -55,7 +54,6 @@ let searchByIngredient = function(){
       "x-rapidapi-key": "906589c267mshf9a4f4892b356a0p149e31jsn16ecd1a6860c"
     }
   }
-  
   $.ajax(settings).done(function (response) {
     console.log(response);
   });
@@ -63,21 +61,21 @@ let searchByIngredient = function(){
 $("#btn-ingredients").click(searchByIngredient)
 
 
-let searchImages = function(){
-let settings = {
-  "async": true,
-  "crossDomain": true,
-  "url": "https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/ImageSearchAPI?autoCorrect=false&pageNumber=1&pageSize=10&q=Taylor%20Swift&safeSearch=false",
-  "method": "GET",
-  "headers": {
-    "x-rapidapi-host": "contextualwebsearch-websearch-v1.p.rapidapi.com",
-    "x-rapidapi-key": "906589c267mshf9a4f4892b356a0p149e31jsn16ecd1a6860c"
+let searchImages = function () {
+  let settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/ImageSearchAPI?autoCorrect=false&pageNumber=1&pageSize=10&q=Taylor%20Swift&safeSearch=false",
+    "method": "GET",
+    "headers": {
+      "x-rapidapi-host": "contextualwebsearch-websearch-v1.p.rapidapi.com",
+      "x-rapidapi-key": "906589c267mshf9a4f4892b356a0p149e31jsn16ecd1a6860c"
+    }
   }
-}
 
-$.ajax(settings).done(function (response) {
-  console.log(response);
-});
+  $.ajax(settings).done(function (response) {
+    console.log(response);
+  });
 }
 $("#btn-images").click(searchImages)
 
@@ -85,18 +83,18 @@ $("#btn-images").click(searchImages)
 
 
 
-//   let settings = {
-  //     "async": true,
-  //     "crossDomain": true,
-  //     "url": "https://tumbimg.p.rapidapi.com/tumblr-image-search/?q=manhattan",
-  //     "method": "GET",
-  //     "headers": {
-    //       "x-rapidapi-host": "tumbimg.p.rapidapi.com",
-    //       "x-rapidapi-key": "906589c267mshf9a4f4892b356a0p149e31jsn16ecd1a6860c"
-    //     }
-    //   }
-    
-    //   $.ajax(settings).done(function (response) {
-      //     console.log(response);
-      //   });
-      // }
+  //   let settings = {
+    //     "async": true,
+    //     "crossDomain": true,
+    //     "url": "https://tumbimg.p.rapidapi.com/tumblr-image-search/?q=manhattan",
+    //     "method": "GET",
+    //     "headers": {
+      //       "x-rapidapi-host": "tumbimg.p.rapidapi.com",
+      //       "x-rapidapi-key": "906589c267mshf9a4f4892b356a0p149e31jsn16ecd1a6860c"
+      //     }
+      //   }
+
+      //   $.ajax(settings).done(function (response) {
+        //     console.log(response);
+        //   });
+        // }
