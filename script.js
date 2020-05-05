@@ -5,7 +5,28 @@
   // document.body.appendChild(myImage)
 
 
-let searchIngredients = function () {
+// Needs to be added to an input field to search cocktails by name.  Search returns all information for searched drink.
+  let lookupFullCocktailDetails = function () {
+  let settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "https://the-cocktail-db.p.rapidapi.com/lookup.php?i=11007",
+    "method": "GET",
+    "headers": {
+      "x-rapidapi-host": "the-cocktail-db.p.rapidapi.com",
+      "x-rapidapi-key": "906589c267mshf9a4f4892b356a0p149e31jsn16ecd1a6860c"
+    }
+  }
+  $.ajax(settings).done(function (response) {
+    console.log(response);
+  });
+}
+$("#").click(lookupFullCocktailDetails)
+
+
+
+//provides a list of 100 ingredients.  Could maybe be used as a drop-down menu???  
+let listOfIngredients = function () {
   let settings = {
     "async": true,
     "crossDomain": true,
@@ -16,20 +37,19 @@ let searchIngredients = function () {
       "x-rapidapi-key": "906589c267mshf9a4f4892b356a0p149e31jsn16ecd1a6860c"
     }
   }
-  
   $.ajax(settings).done(function (response) {
     console.log(response);
   });
-  
 }
-$("#btn-ingredientsList").click(searchIngredients)
+$("#").click(listOfIngredients)
 
 
-let searchCocktailByName = function(){
+// provides random cocktail with list of ingredients
+let lookupRandomCocktail = function(){
   let settings = {
     "async": true,
     "crossDomain": true,
-    "url": "https://the-cocktail-db.p.rapidapi.com/search.php?i=vodka",
+    "url": "https://the-cocktail-db.p.rapidapi.com/random.php",
     "method": "GET",
     "headers": {
       "x-rapidapi-host": "the-cocktail-db.p.rapidapi.com",
@@ -40,9 +60,10 @@ let searchCocktailByName = function(){
     console.log(response);
   });
 }
-$("#btn-cocktails").click(searchCocktailByName)
+$("#").click(lookupRandomCocktail)
 
 
+// Needs to be added to an input field to search cocktails by name.  Search returns all drinks for requested liquor/ingredient.
 let searchByIngredient = function(){
   let settings = {
     "async": true,
@@ -58,9 +79,30 @@ let searchByIngredient = function(){
     console.log(response);
   });
 }
-$("#btn-ingredients").click(searchByIngredient)
+$("#").click(searchByIngredient)
 
 
+//returns list of 100 drinks objects.  Might need to be connected to an input field.  Drink objects contain "strDrink": NameOfDrink; "strDrinkThumb": ImageOfDrink; "idDrink": DrinkIDNumber
+let filterByCategory = function(){
+  let settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "https://the-cocktail-db.p.rapidapi.com/filter.php?c=Cocktail",
+    "method": "GET",
+    "headers": {
+      "x-rapidapi-host": "the-cocktail-db.p.rapidapi.com",
+      "x-rapidapi-key": "906589c267mshf9a4f4892b356a0p149e31jsn16ecd1a6860c"
+    }
+  }
+  $.ajax(settings).done(function (response) {
+    console.log(response);
+  });
+}
+$("#").click(filterByCategory)
+
+
+
+//Image API.  Does not seem necessary as we gave images in filterByCategory, but we do need 2 APIs for this project.
 let searchImages = function () {
   let settings = {
     "async": true,
@@ -72,17 +114,19 @@ let searchImages = function () {
       "x-rapidapi-key": "906589c267mshf9a4f4892b356a0p149e31jsn16ecd1a6860c"
     }
   }
-
   $.ajax(settings).done(function (response) {
     console.log(response);
   });
 }
-$("#btn-images").click(searchImages)
+$("#").click(searchImages)
 
 
 
 
 
+
+
+//Tumblr Image API that did not want to work.
   //   let settings = {
     //     "async": true,
     //     "crossDomain": true,
