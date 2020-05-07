@@ -4,10 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MacGuyverApp</title>
+    <title>MacGuyver Drinking App</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -40,12 +43,13 @@
                         <input type="text" onfocus="this.value=''" id="ingredient-input"
                             value="Input Ingredients Here!" />
                     </div>
-                    <button id="add" type="button">Add Ingredient</button>
-                </form>
 
-                <ul class="listIngredients white-text">
+                    <button id="addListItem" type="button">+</button>
+                </form class="ingredientsForm" id="ingredientsForm">
+                <ul>
                 </ul>
-                <button id="mix-button">mix your drink</button><button id="clear-button">clear</button>
+                <button id="mix-drink-button">mix your drink</button> <button id="clear-button">clear</button>
+
 
                 <!-- This button should remove entire list -->
             </div>
@@ -53,6 +57,7 @@
     </div>
 
     <div class="row">
+
         <div class="col s12 m7">
             <div class="card" id="cocktail-section">
                 <div class="card-image">
@@ -68,6 +73,7 @@
                         <img src="">
                         <figcaption></figcaption>
                     </figure>
+
                     <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Cocktails!</a>
                     <ul id='dropdown1' class='dropdown-trigger'>
                         <li><a href="#!">one</a></li>
@@ -83,10 +89,10 @@
     <script>
 
         $(document).ready(function () {
-            $('#add').click(function () {
 
                 let item = $('#ingredient-input')
                 $('.listIngredients').prepend("<li class='chosen-ingredient'>" + item.val() + "<button>" + "-" +
+
                     "</button>" + "</li>");
             });
 
@@ -155,6 +161,7 @@
         // $('.dropdown-trigger').dropdown();
     </script>
 </body>
+<script src="script.js"></script>
 
 <!-- 
 // This is sort of a beginning to creating an array from our added ingredients. I assume this is how our ingredients
