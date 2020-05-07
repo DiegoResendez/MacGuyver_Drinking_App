@@ -19,16 +19,17 @@
     <nav style="background-color: gold; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;">
         <div class="nav-wrapper navBar">
 
-          <a href="#" class="brand-logo" style="margin-top: -10px; font-family: Alegreya SC;">MacGuyver Cocktail Mixer</a>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="...">Find Cocktails by Ingredients</a></li>
-            <li><a href="...">Browse Drinks</a></li>
-            <li><a href="...">About</a></li>
-          </ul>
+            <a href="#" class="brand-logo" style="margin-top: -10px; font-family: Alegreya SC;">MacGuyver Cocktail
+                Mixer</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="#" onclick="untogglePanel();">Find Cocktails by Ingredients</a></li>
+                <li><a href="...">Browse Drinks</a></li>
+                <li><a href="...">About</a></li>
+            </ul>
         </div>
 
     </nav>
-    <div class="row">
+    <div class="row" id="ingredient-panel">
         <div class="col s12 m5">
 
             <div class="card-panel purple UW_Border" style="border-radius: 50px;">
@@ -36,7 +37,8 @@
                 </span>
                 <form>
                     <div>
-                        <input type="text" id="ingredient-input" />
+                        <input type="text" onfocus="this.value=''" id="ingredient-input"
+                            value="Input Ingredients Here!" />
                     </div>
                     <button id="add" type="button">Add Ingredient</button>
                 </form>
@@ -54,7 +56,8 @@
         <div class="col s12 m7">
             <div class="card" id="cocktail-section">
                 <div class="card-image">
-                    <img src="https://www.liquor.com/thmb/zJ7_To3UNS5DNJ0aeyc4dVHUAac=/735x0/__opt__aboutcom__coeus__resources__content_migration__liquor__2018__05__10144903__Manhattan-720x720-recipe-9497922907c14d91898f557cb51f2ea3.jpg">
+                    <img
+                        src="https://www.liquor.com/thmb/zJ7_To3UNS5DNJ0aeyc4dVHUAac=/735x0/__opt__aboutcom__coeus__resources__content_migration__liquor__2018__05__10144903__Manhattan-720x720-recipe-9497922907c14d91898f557cb51f2ea3.jpg">
                 </div>
                 <div class="card-content">
                     <span class="drink-name"></span>
@@ -100,11 +103,17 @@
                 $(".chosen-ingredient").remove();
             });
 
+            $('#clear-button').on('click', function () {
+                $(".chosen-ingredient").remove();
+            });
+
+            $('.ingredient-input').click.text("")
+
 
         });
 
         function mixYourDrink() {
-            $('#mix-button').on('click', 'button', function () {
+            $('#mix-button').on('click', function () {
                 let cocktailURL = "https://rapidapi.com/theapiguy/api/the-cocktail-db?endpoint=apiendpoint_67a71546-a41f-4dd0-9c04-f54fa8f375ef"
                 let ingredients = [];
                 let searchtheapiguy = function (cocktail) {
@@ -119,11 +128,25 @@
                 };
                 $("#cocktail-section").show();
                 $("#drink-name").text("<p>" + "" + "</p>");
+
+
+
+                // JSON.stringify(myObj);
+
+                // console.log(myObjStr);
             })
         };
 
-        
+        $("#mix-button").click(function () {
+            $("#ingredient-panel").toggle();
+            $("#cocktail-section").toggle();
 
+        });
+
+        function untogglePanel() {
+
+            $("#ingredient-panel").toggle();
+        }
 
          // document.addEventListener('DOMContentLoaded', function () {
         //     var elems = document.querySelectorAll('.dropdown-trigger');
