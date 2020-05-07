@@ -16,19 +16,35 @@
 </head>
 
 <body>
+    <nav style="background-color: gold; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;">
+        <div class="nav-wrapper navBar">
 
+          <a href="#" class="brand-logo" style="margin-top: -10px; font-family: Alegreya SC;">MacGuyver Cocktail Mixer</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="...">Find Cocktails by Ingredients</a></li>
+            <li><a href="...">Browse Drinks</a></li>
+            <li><a href="...">About</a></li>
+          </ul>
+        </div>
+
+    </nav>
     <div class="row">
         <div class="col s12 m5">
-            <div class="card-panel teal">
-                <span class="black-text">Please select your ingredients for your custom cocktail options.</span>
+
+            <div class="card-panel purple UW_Border" style="border-radius: 50px;">
+                <span class="white-text">Please select your ingredients for your custom cocktail options.
+                </span>
                 <form>
                     <div>
                         <input type="text" id="ingredient-input" />
                     </div>
                     <button id="add" type="button">Add Ingredient</button>
                 </form>
-                <ul class="ingredient-list"></ul>
+
+                <ul class="listIngredients white-text">
+                </ul>
                 <button id="mix-button">mix your drink</button><button id="clear-button">clear</button>
+
                 <!-- This button should remove entire list -->
             </div>
         </div>
@@ -65,18 +81,21 @@
 
         $(document).ready(function () {
             $('#add').click(function () {
+
                 let item = $('#ingredient-input')
                 $('.ingredient-list').prepend("<li class='chosen-ingredient'>" + item.val() + "<button>" + "-" +
                     "</button>" + "</li>");
             });
 
-            $('ul').on('click', 'button', function () {
+            $('.listIngredients').on('click', 'button', function () {
                 $(this).parent().remove();
             });
+
 
             // $('#clear-button').on('click', 'button', function () {
             //     $(".chosen-ingredient").remove();
             // });
+
 
         });
 
