@@ -22,7 +22,7 @@
           <a href="#" class="brand-logo" style="margin-top: -10px; font-family: Alegreya SC;">MacGuyver Cocktail Mixer</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="...">Find Cocktails by Ingredients</a></li>
-            <li><a href="...">Browse Drinks</a></li>
+            <li><button id="browseDrinks">Browse Drinks</a></li>
             <li><a href="...">About</a></li>
           </ul>
         </div>
@@ -38,7 +38,7 @@
                     <div>
                         <input type="text" id="ingredient-input" />
                     </div>
-                    <button id="add" type="button">Add Ingredient</button>
+                    <button id="addListItem" type="button">Add Ingredient</button>
                 </form>
 
                 <ul class="listIngredients white-text">
@@ -56,11 +56,11 @@
                 <div class="card-image">
                     <img src="https://www.liquor.com/thmb/zJ7_To3UNS5DNJ0aeyc4dVHUAac=/735x0/__opt__aboutcom__coeus__resources__content_migration__liquor__2018__05__10144903__Manhattan-720x720-recipe-9497922907c14d91898f557cb51f2ea3.jpg">
                 </div>
-                <div class="card-content">
-                    <span class="drink-name"></span>
+                <div class="card-content" id="cardContent">
+                    <span class="drink-name" id="drinkName"></span>
                     <li class="ingredients"></li>
                 </div>
-                <div class="card-action">
+                <div class="card-action" id="cardAction">
                     <figure>
                         <img src="">
                         <figcaption></figcaption>
