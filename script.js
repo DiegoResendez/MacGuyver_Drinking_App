@@ -3,6 +3,54 @@
   // let myImage = new Image(100, 200);
   // myImage.src = 'picture.jpg';
   // document.body.appendChild(myImage)
+  const mixDrinkButton = document.getElementById("mix-drink-button");
+  const clearButton = document.getElementById("clear-button");
+  const ingredientsForm = document.getElementById("ingredientsForm");
+  const addListItem = document.getElementById("addListItem");
+  const dropdown1 = document.getElementById("dropdown1");
+  const cardImage = document.getElementById("cardImage");
+  const cardContent = document.getElementById("cardContent");
+  const cardAction = document.getElementById("cardAction");
+  const drinkCardName = document.getElementById("drinkCardName");
+  const drinkCardIngredient = document.getElementById("drinkCardIngredient");
+  const textInput6PM = document.getElementById("textInput6PM");
+  
+  // mixDrinkButton.addEventListener("click", getListOfDrinks);
+  // clearButton.addEventListener("click", resetIngredientsForm);
+  // addListItem.addEventListener("click", addListItem);
+  mixDrinkButton.addEventListener("click", createDrinkListItems);
+  // .addEventListener("click", );
+  // .addEventListener("click", );
+  // .addEventListener("click", );
+  // .addEventListener("click", );
+  // .addEventListener("click", );
+  // .addEventListener("click", );
+  // .addEventListener("click", );
+
+
+
+  
+  let drinksListItems = ["idDrink", "strDrink", "strCategory", "strIBA", "strAlcoholic", "strGlass", "strInstructions", "strDrinkThumb"]
+  
+  function createDrinkListItems (){
+  let newDrink = {};
+
+  for(i = 0; i < drinksListItems.length; i++){
+    let drinkCard = drinksListItems[i].value;
+let node = document.createElement("li");
+let textnode = document.createTextNode(drinkCard);
+node.appendChild(textnode);
+dropdown1.appendChild(node);
+  }
+}
+
+// let node = document.createElement("LI"); 
+// let textnode = document.createTextNode();
+// node.appendChild([i]);
+// for(i = 0; i < Drinks.length; i++){
+//   let newDrink = textnode[i];
+// }
+
 
 
 // Needs to be added to an input field to search cocktails by name.  Search returns all information for searched drink.
