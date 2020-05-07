@@ -28,7 +28,7 @@
                     <div>
                         <input type="text" id="todo" />
                     </div>
-                    <button id="add" type="button">+</button>
+                    <button id="addListItem" type="button">+</button>
                 </form class="ingredientsForm" id="ingredientsForm">
                 <ul>
                 </ul>
@@ -40,17 +40,17 @@
     </div>
 
     <div class="row">
-        <div class="col s12 m7">
+        <div class="col s12 m7" id="">
             <div class="card">
                 <div class="card-image">
-                    <img
+                    <img id="cardImage"
                         src="https://www.liquor.com/thmb/zJ7_To3UNS5DNJ0aeyc4dVHUAac=/735x0/__opt__aboutcom__coeus__resources__content_migration__liquor__2018__05__10144903__Manhattan-720x720-recipe-9497922907c14d91898f557cb51f2ea3.jpg">
                 </div>
-                <div class="card-content">
-                    <span class="card-title">Manhattan</span>
-                    <li class="ingredients">Bourbon</li>
+                <div class="card-content" id="cardContent">
+                    <span class="card-title" id="drinkCardName" value="drinkCardName">Manhattan</span>
+                    <li class="ingredients" id="drinkCardIngredient" value="drinkCardIngredient">Bourbon</li>
                 </div>
-                <div class="card-action">
+                <div class="card-action" id="cardAction">
                     <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Cocktails!</a>
                     <ul id='dropdown1' class='dropdown-trigger'>
                         <li><a href="#!">one</a></li>
@@ -81,7 +81,7 @@
 
 
         $(document).ready(function () {
-            $('#add').click(function () {
+            $('#addListItem').click(function () {
                 var item = $('#todo')
                 $('ul').prepend("<li>" + item.val() + "<button>" + "-" +
                     "</button>" + "</li>");
