@@ -7,12 +7,12 @@
     <title>MacGuyverApp</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
 </head>
 
 <body>
@@ -20,37 +20,35 @@
     <div class="row">
         <div class="col s12 m5">
             <div class="card-panel teal">
-                <span class="black-text">Please select your ingredients for your custom cocktail options.
-                </span>
-
-
+                <span class="black-text">Please select your ingredients for your custom cocktail options.</span>
                 <form>
                     <div>
-                        <input type="text" id="todo" />
+                        <input type="text" id="ingredient-input" />
                     </div>
-                    <button id="add" type="button">+</button>
+                    <button id="add" type="button">Add Ingredient</button>
                 </form>
-                <ul>
-                </ul>
-                <button>mix your drink</button> <button id="clear-button">clear</button>
+                <ul class="ingredient-list"></ul>
+                <button id="mix-button">mix your drink</button><button id="clear-button">clear</button>
                 <!-- This button should remove entire list -->
-
             </div>
         </div>
     </div>
 
     <div class="row">
         <div class="col s12 m7">
-            <div class="card">
+            <div class="card" id="cocktail-section">
                 <div class="card-image">
-                    <img
-                        src="https://www.liquor.com/thmb/zJ7_To3UNS5DNJ0aeyc4dVHUAac=/735x0/__opt__aboutcom__coeus__resources__content_migration__liquor__2018__05__10144903__Manhattan-720x720-recipe-9497922907c14d91898f557cb51f2ea3.jpg">
+                    <img src="https://www.liquor.com/thmb/zJ7_To3UNS5DNJ0aeyc4dVHUAac=/735x0/__opt__aboutcom__coeus__resources__content_migration__liquor__2018__05__10144903__Manhattan-720x720-recipe-9497922907c14d91898f557cb51f2ea3.jpg">
                 </div>
                 <div class="card-content">
-                    <span class="card-title">Manhattan</span>
-                    <li class="ingredients">Bourbon</li>
+                    <span class="drink-name"></span>
+                    <li class="ingredients"></li>
                 </div>
                 <div class="card-action">
+                    <figure>
+                        <img src="">
+                        <figcaption></figcaption>
+                    </figure>
                     <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Cocktails!</a>
                     <ul id='dropdown1' class='dropdown-trigger'>
                         <li><a href="#!">one</a></li>
@@ -60,30 +58,15 @@
             </div>
         </div>
     </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
     <script>
-        let cocktailURL = "https://rapidapi.com/theapiguy/api/the-cocktail-db?endpoint=apiendpoint_67a71546-a41f-4dd0-9c04-f54fa8f375ef"
-        // let ingredients = [EVERY SINGLE INGREDIENT]
-        let searchtheapiguy = function (cocktail) {
-            let queryURL = "";
-            $.ajax({
-                url: queryURL,
-                method: "GET"
-            }).then(function (response) {
-                createRow(response); // hi jeremiah 
-            });
-        };
-
-        document.addEventListener('DOMContentLoaded', function () {
-            let elems = document.querySelectorAll('.dropdown-trigger');
-            let instances = M.Dropdown.init(elems);
-        });
-
 
         $(document).ready(function () {
             $('#add').click(function () {
-                var item = $('#todo')
-                $('ul').prepend("<li>" + item.val() + "<button>" + "-" +
+                let item = $('#ingredient-input')
+                $('.ingredient-list').prepend("<li class='chosen-ingredient'>" + item.val() + "<button>" + "-" +
                     "</button>" + "</li>");
             });
 
@@ -91,13 +74,88 @@
                 $(this).parent().remove();
             });
 
-            $('ul').on('click', '#clear-button', function () {
-                $(this).parent().remove();
-            });
+            // $('#clear-button').on('click', 'button', function () {
+            //     $(".chosen-ingredient").remove();
+            // });
+
         });
 
+        function mixYourDrink() {
+            $('#mix-button').on('click', 'button', function () {
+                let cocktailURL = "https://rapidapi.com/theapiguy/api/the-cocktail-db?endpoint=apiendpoint_67a71546-a41f-4dd0-9c04-f54fa8f375ef"
+                let ingredients = [];
+                let searchtheapiguy = function (cocktail) {
+                    let queryURL = (cocktailURL);
+                    $.ajax({
+                        url: queryURL,
+                        method: "GET"
+                    }).then(function (response) {
+                        console.log(response);
+                        createRow(response); // hi jeremiah 
+                    });
+                };
+                $("#cocktail-section").show();
+                $("#drink-name").text("<p>" + "" + "</p>");
+            })
+        };
+
+        
+
+
+         // document.addEventListener('DOMContentLoaded', function () {
+        //     var elems = document.querySelectorAll('.dropdown-trigger');
+        //     var instances = M.Dropdown.init(elems, options);
+        // });
+        // $('.dropdown-trigger').dropdown();
     </script>
 </body>
 
+<!-- 
+// This is sort of a beginning to creating an array from our added ingredients. I assume this is how our ingredients
+will be read and confirmed in the API.
+// var inputValues = $('.activeInput').map(function() {
+// return $(this).val();
+// }).toArray();
+// var cList = $('ul.mylist')
+// $.each(countries, function (i) {
+// var li = $('
+<li />')
+// .addClass('ui-menu-item')
+// .attr('role', 'menuitem')
+// .appendTo(cList);
+// var aaa = $('<a />')
+// .addClass('ui-all')
+// .text(countries[i])
+// .appendTo(li);
+// });
+
+// Potentially Better Example
+
+// var getBtn = document.getElementById('myBtn');
+// getBtn.onclick = function () {
+// getTheData();
+// }
+
+// function getTheData() {
+// var some = document.getElementsByClassName("some");
+// var inputValues = new Array();
+
+// for (i in some) {
+// //extract the value of input elements
+// var singleVal = some[i].value;
+// if (singleVal !== "" && singleVal !== undefined) {
+// inputValues.push(singleVal);
+// }
+// }
+
+
+// var showVals = document.getElementById('showInputValues');
+
+// //Convert to string format to see the output easily
+// var stringFormat = String(inputValues);
+// showVals.innerHTML = stringFormat;
+// console.log(inputValues);
+
+// } -->
 
 </html>
