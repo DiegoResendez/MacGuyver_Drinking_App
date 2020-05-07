@@ -83,18 +83,22 @@
             $('#add').click(function () {
 
                 let item = $('#ingredient-input')
-                $('.ingredient-list').prepend("<li class='chosen-ingredient'>" + item.val() + "<button>" + "-" +
+                $('.listIngredients').prepend("<li class='chosen-ingredient'>" + item.val() + "<button>" + "-" +
                     "</button>" + "</li>");
             });
 
-            $('.listIngredients').on('click', 'button', function () {
+            $('ul').on('click', 'button', function () {
                 $(this).parent().remove();
             });
 
-
-            // $('#clear-button').on('click', 'button', function () {
-            //     $(".chosen-ingredient").remove();
+            // $('.listIngredients').on('click', 'button', function () {
+            //     $(this).parent().remove();
             // });
+
+
+            $('#clear-button').on('click', function () {
+                $(".chosen-ingredient").remove();
+            });
 
 
         });
