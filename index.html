@@ -36,16 +36,19 @@
 
     <div class="row">
         <div class="col s12 m7">
-            <div class="card">
+            <div class="card" id="cocktail-section">
                 <div class="card-image">
-                    <img
-                        src="https://www.liquor.com/thmb/zJ7_To3UNS5DNJ0aeyc4dVHUAac=/735x0/__opt__aboutcom__coeus__resources__content_migration__liquor__2018__05__10144903__Manhattan-720x720-recipe-9497922907c14d91898f557cb51f2ea3.jpg">
+                    <img src="https://www.liquor.com/thmb/zJ7_To3UNS5DNJ0aeyc4dVHUAac=/735x0/__opt__aboutcom__coeus__resources__content_migration__liquor__2018__05__10144903__Manhattan-720x720-recipe-9497922907c14d91898f557cb51f2ea3.jpg">
                 </div>
                 <div class="card-content">
                     <span class="drink-name"></span>
                     <li class="ingredients"></li>
                 </div>
                 <div class="card-action">
+                    <figure>
+                        <img src="">
+                        <figcaption></figcaption>
+                    </figure>
                     <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Cocktails!</a>
                     <ul id='dropdown1' class='dropdown-trigger'>
                         <li><a href="#!">one</a></li>
@@ -55,19 +58,15 @@
             </div>
         </div>
     </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
     <script>
-
-
-
-
-
-
 
         $(document).ready(function () {
             $('#add').click(function () {
                 let item = $('#ingredient-input')
-                $('.ingredient-list').prepend("<li>" + item.val() + "<button>" + "-" +
+                $('.ingredient-list').prepend("<li class='chosen-ingredient'>" + item.val() + "<button>" + "-" +
                     "</button>" + "</li>");
             });
 
@@ -75,28 +74,16 @@
                 $(this).parent().remove();
             });
 
-            $('#clear-button').on('click', 'button', function () {
-                $(this).remove();
-            });
+            // $('#clear-button').on('click', 'button', function () {
+            //     $(".chosen-ingredient").remove();
+            // });
 
         });
 
-
-
-    
-        // document.addEventListener('DOMContentLoaded', function () {
-        //     var elems = document.querySelectorAll('.dropdown-trigger');
-        //     var instances = M.Dropdown.init(elems, options);
-        // });
-        // $('.dropdown-trigger').dropdown();
-
         function mixYourDrink() {
-
             $('#mix-button').on('click', 'button', function () {
-                
-
                 let cocktailURL = "https://rapidapi.com/theapiguy/api/the-cocktail-db?endpoint=apiendpoint_67a71546-a41f-4dd0-9c04-f54fa8f375ef"
-                // let ingredients = [EVERY SINGLE INGREDIENT]
+                let ingredients = [];
                 let searchtheapiguy = function (cocktail) {
                     let queryURL = (cocktailURL);
                     $.ajax({
@@ -107,10 +94,19 @@
                         createRow(response); // hi jeremiah 
                     });
                 };
-s
-                // $("#drink-name").text("<p>" + "" + "</p>")";
+                $("#cocktail-section").show();
+                $("#drink-name").text("<p>" + "" + "</p>");
             })
         };
+
+        
+
+
+         // document.addEventListener('DOMContentLoaded', function () {
+        //     var elems = document.querySelectorAll('.dropdown-trigger');
+        //     var instances = M.Dropdown.init(elems, options);
+        // });
+        // $('.dropdown-trigger').dropdown();
     </script>
 </body>
 
