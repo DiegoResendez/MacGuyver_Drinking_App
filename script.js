@@ -3,7 +3,8 @@
   // let myImage = new Image(100, 200);
   // myImage.src = 'picture.jpg';
   // document.body.appendChild(myImage)
-  const mixDrinkButton = document.getElementById("mix-drink-button");
+  const mixDrinkButton = document.getElementById("mix-button");
+  const browseDrinksButton = document.getElementById("browseDrinks");
   const clearButton = document.getElementById("clear-button");
   const ingredientsForm = document.getElementById("ingredientsForm");
   const addListItem = document.getElementById("addListItem");
@@ -13,13 +14,11 @@
   const cardAction = document.getElementById("cardAction");
   const drinkCardName = document.getElementById("drinkCardName");
   const drinkCardIngredient = document.getElementById("drinkCardIngredient");
-  const textInput6PM = document.getElementById("textInput6PM");
   
-  // mixDrinkButton.addEventListener("click", getListOfDrinks);
   // clearButton.addEventListener("click", resetIngredientsForm);
   // addListItem.addEventListener("click", addListItem);
   mixDrinkButton.addEventListener("click", createDrinkListItems);
-  // .addEventListener("click", );
+  // browseDrinksButton.addEventListener("click", listAllDrinks);
   // .addEventListener("click", );
   // .addEventListener("click", );
   // .addEventListener("click", );
@@ -36,22 +35,27 @@
   let newDrink = {};
 
   for(i = 0; i < drinksListItems.length; i++){
-    let drinkCard = drinksListItems[i].value;
-let node = document.createElement("li");
-let textnode = document.createTextNode(drinkCard);
-node.appendChild(textnode);
-dropdown1.appendChild(node);
+    let drinkCard = drinksListItems[i];
+    let node = document.createElement("li");
+    let textnode = document.createTextNode(drinkCard);
+    node.appendChild(textnode);
+    dropdown1.appendChild(node);
+  console.log(drinkCard);
   }
+  
 }
 
+// localStorage.setItem(drinkValues, JSON.stringify(newDrink));
 // let node = document.createElement("LI"); 
 // let textnode = document.createTextNode();
 // node.appendChild([i]);
+// let textnode = document.createTextNode(drinkCard);
 // for(i = 0; i < Drinks.length; i++){
-//   let newDrink = textnode[i];
+  // let newDrink = textnode[i]; --> not sure if this is needed.
 // }
 
-
+// function listAllDrinks(){
+// }
 
 // Needs to be added to an input field to search cocktails by name.  Search returns all information for searched drink.
   let lookupFullCocktailDetails = function () {
@@ -69,7 +73,7 @@ dropdown1.appendChild(node);
     console.log(response);
   });
 }
-$("#").click(lookupFullCocktailDetails)
+$("#mix-button").click(lookupFullCocktailDetails)
 
 
 
@@ -89,7 +93,7 @@ let listOfIngredients = function () {
     console.log(response);
   });
 }
-$("#").click(listOfIngredients)
+$("#mix-button").click(listOfIngredients)
 
 
 // provides random cocktail with list of ingredients
@@ -108,7 +112,7 @@ let lookupRandomCocktail = function(){
     console.log(response);
   });
 }
-$("#").click(lookupRandomCocktail)
+$("#mix-button").click(lookupRandomCocktail)
 
 
 // Needs to be added to an input field to search cocktails by name.  Search returns all drinks for requested liquor/ingredient.
@@ -127,7 +131,7 @@ let searchByIngredient = function(){
     console.log(response);
   });
 }
-$("#").click(searchByIngredient)
+$("#browseDrinks").click(searchByIngredient)
 
 
 //returns list of 100 drinks objects.  Might need to be connected to an input field.  Drink objects contain "strDrink": NameOfDrink; "strDrinkThumb": ImageOfDrink; "idDrink": DrinkIDNumber
@@ -146,7 +150,7 @@ let filterByCategory = function(){
     console.log(response);
   });
 }
-$("#").click(filterByCategory)
+$("#browseDrinks").click(filterByCategory)
 
 
 
@@ -166,7 +170,7 @@ let searchImages = function () {
     console.log(response);
   });
 }
-$("#").click(searchImages)
+$("#mix-button").click(searchImages)
 
 
 
