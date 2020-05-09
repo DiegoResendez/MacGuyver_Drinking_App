@@ -16,6 +16,7 @@
 </head>
 
 <body>
+
     <nav style="background-color: gold; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;">
         <div class="nav-wrapper navBar">
 
@@ -28,10 +29,11 @@
         </div>
 
     </nav>
+<div class="container">
     <div class="row">
         <div class="col s12 m5">
 
-            <div class="card-panel purple UW_Border" style="border-radius: 50px;">
+            <div class="card-panel purple UW_Border">
                 <span class="white-text">Please select your ingredients for your custom cocktail options.
                 </span>
                 <form>
@@ -74,28 +76,96 @@
             </div>
         </div>
     </div>
+    
+    <!--IMAGE DESIGN LAYOUT-->
+    <div class="row">
+        <div class="col s12 m7">
+          <div class="card UW_Border">
+            <div class="card-image">
+              <img src="Manhattan_IMG.jpg" class="drink_image" style="border-top-left-radius: 35px; border-top-right-radius: 35px;">
+              <span class="card-title purple">Card Title</span>
+            </div>
+            <div class="card-content purple">
+              <p class="white-text"></p>
+            </div>
+            <div class="card-action purple lighten-3" style="border-bottom-left-radius: 35px; border-bottom-right-radius: 35px;">
+              <a href="#"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+</div>
+
+<footer class="page-footer purple">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Created by Diego Resendez, Levi Robischon, and Jeremiah Yates (2020)</h5>
+          <p class="grey-text text-lighten-4">Made possible by the Cocktail DB.</p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text"></h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="#!"></a></li>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!--<div class="footer-copyright">
+      <div class="container">
+      © 2014 Copyright Text
+      <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+      </div>
+    </div>-->
+  </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <script>
 
         $(document).ready(function () {
-            $('#add').click(function () {
 
+          // Array for the if-statement below
+          let ingredientListArray = [""]; 
+          console.log(ingredientListArray)
+
+            $('#add').click(function () {
                 let item = $('#ingredient-input')
-                $('.ingredient-list').prepend("<li class='chosen-ingredient'>" + item.val() + "<button>" + "-" +
-                    "</button>" + "</li>");
+
+                /// Array items will be in ALLCAPS to prevent duplicate ingredients in different cases
+                let a = String(item.val());
+                console.log(a);
+                let A = a.toUpperCase();
+
+                // I set up an if statement that prevents blank or duplicate ingredient items from being added to the list. -Levi
+                if (ingredientListArray.includes(A) === false) { 
+                  ingredientListArray.push(A);
+                  console.log(ingredientListArray);
+                  $('.listIngredients').prepend("<li class='chosen-ingredient'>" + item.val() + "<button>" + "-" +
+                      "</button>" + "</li>");
+                  $("#ingredient-input").val('')
+                };    
             });
 
             $('.listIngredients').on('click', 'button', function () {
+
+              //This is the line of code that I created to remove the text equivalent of the removed element from the array
+                let removedItem =  $(this).parent().html();
+                removedItem = removedItem.replace('<button>-</button>', '')
+                console.log(removedItem);
+                ingredientListArray.splice($.inArray(removedItem, ingredientListArray),1);
+                console.log(ingredientListArray)
                 $(this).parent().remove();
             });
 
-
-            // $('#clear-button').on('click', 'button', function () {
-            //     $(".chosen-ingredient").remove();
-            // });
-
+            // I uncommented the function for the clear button and added a line of code for the array - Levi
+            $('#clear-button').on('click', function () {
+                 $(".chosen-ingredient").remove();
+                 ingredientListArray.length = 1;
+             });
 
         });
 
